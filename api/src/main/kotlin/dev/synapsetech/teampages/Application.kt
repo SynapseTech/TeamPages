@@ -1,6 +1,7 @@
 package dev.synapsetech.teampages
 
 import dev.synapsetech.teampages.config.MainConfig
+import dev.synapsetech.teampages.data.Mongo
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import dev.synapsetech.teampages.plugins.*
@@ -12,6 +13,7 @@ fun main(args: Array<String>) {
         "./config.json"
     } else args[0]
     MainConfig.loadFile(File(configFile))
+    Mongo.connect(MainConfig.INSTANCE.database)
 
     embeddedServer(Netty, port = MainConfig.INSTANCE.port, host = "0.0.0.0") {
         configureHTTP()
