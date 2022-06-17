@@ -1,0 +1,14 @@
+{
+  "webUrl": "https://docs.synapsetech.dev",
+  "port": 8080,
+  "database": {
+    "mongoUri": "mongodb://localhost",
+    "mongoDatabase": "teampages"
+  },
+  "jwt": {
+    "secret": "keyboard cat",
+    "domain": "docsapi.synapsetech.dev",
+    "audience": "*",
+    "realm": "API Access"
+  }
+}
