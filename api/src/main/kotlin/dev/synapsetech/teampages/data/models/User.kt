@@ -13,9 +13,10 @@ import org.mindrot.jbcrypt.BCrypt
 @Serializable
 data class User(
     val _id: Long = snowflake.nextId(),
-    val username: String,
-    val email: String,
+    var username: String,
+    var email: String,
     var passwordHash: String,
+    var admin: Boolean = false,
     var displayName: String = "",
 ) {
     fun checkPassword(password: String): Boolean = BCrypt.checkpw(password, passwordHash)
@@ -35,19 +36,22 @@ data class User(
     }
 
     fun toApiJson(privateFields: Boolean = false) =
-        if (privateFields) Json(_id, username, displayName, email)
-        else Json(_id, username, displayName)
+        if (privateFields) Json(_id, username, displayName, admin, email)
+        else Json(_id, username, displayName, admin)
 
     @Serializable data class Json(
         val id: Long,
         val username: String,
-        var displayName: String,
+        val displayName: String,
+        val admin: Boolean,
         val email: String? = null,
     )
 
     @Serializable data class Patch(
         val displayName: String?,
-        val email: String?
+        val email: String?,
+        val username: String?,
+        val admin: Boolean?
     )
 
     companion object {
