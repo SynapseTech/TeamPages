@@ -64,6 +64,19 @@ data class UpdatePasswordResponse(
     override val message: String? = null,
 ) : FailableResponse
 
+@Serializable
+data class UpdateAccountRequest(
+    val update: User.Patch,
+    val password: String,
+)
+
+@Serializable
+data class UpdateAccountResponse(
+    val updatedFields: List<String>,
+    override val success: Boolean,
+    override val message: String? = null,
+) : FailableResponse
+
 fun Route.userRoutes() {
     route("/users") {
         post("createAccount") {
@@ -113,6 +126,46 @@ fun Route.userRoutes() {
             get("/me") {
                 val user = requireUser()
                 call.respond(MeResponse(user.toApiJson(true)))
+            }
+
+            patch("/me") {
+                val user = requireUser()
+                val request: UpdateAccountRequest = call.receive()
+
+                val passwordValid = user.checkPassword(request.password)
+
+                if (!passwordValid) {
+                    call.respond(HttpStatusCode.BadRequest, UpdateAccountResponse(
+                        updatedFields = listOf(),
+                        success = false,
+                    ))
+                    return@patch
+                }
+
+                val patch = request.update
+                val updatedFields = mutableListOf<String>()
+
+                if (patch.displayName != null) {
+                    user.displayName = patch.displayName
+                    updatedFields += "displayName"
+                }
+
+                if (patch.username != null) {
+                    user.username = patch.username
+                    updatedFields += "username"
+                }
+
+                if (patch.admin != null) {
+                    user.admin = patch.admin
+                    updatedFields += "admin"
+                }
+
+                if (patch.email != null) {
+                    user.email = patch.email
+                    updatedFields += "email"
+                }
+
+                call.respond(UpdateAccountResponse(updatedFields, true))
             }
 
             post("/me/updatePassword") {
