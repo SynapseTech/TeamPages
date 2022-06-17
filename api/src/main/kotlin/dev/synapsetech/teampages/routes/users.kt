@@ -24,8 +24,9 @@ data class CreateAccountRequest(
 @Serializable
 data class CreateAccountResponseSuccess(
     val user: User.Json,
+    override val message: String? = null,
 ) : FailableResponse {
-    override val success = false
+    override val success = true
 }
 
 @Serializable
@@ -37,6 +38,7 @@ data class LoginRequest(
 @Serializable
 data class LoginResponseSuccess(
     val token: String,
+    override val message: String? = null,
 ) : FailableResponse {
     override val success = true
 }
@@ -50,6 +52,7 @@ data class UpdatePasswordRequest(
 @Serializable
 data class MeResponse(
     val user: User.Json,
+    override val message: String? = null,
 ) : FailableResponse {
     override val success = true
 }
@@ -58,7 +61,7 @@ data class MeResponse(
 data class UpdatePasswordResponse(
     val passwordChanged: Boolean,
     override val success: Boolean,
-    val message: String? = null,
+    override val message: String? = null,
 ) : FailableResponse
 
 fun Route.userRoutes() {

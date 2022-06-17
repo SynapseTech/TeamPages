@@ -11,8 +11,8 @@ import kotlinx.serialization.Serializable
  * @author Liz Ainslie
  */
 @Serializable
-data class ResponseError(
-    val message: String,
+open class ResponseError(
+    override val message: String?,
 ) : FailableResponse {
     override val success: Boolean = false
 }

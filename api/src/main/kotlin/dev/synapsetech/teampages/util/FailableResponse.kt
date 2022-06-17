@@ -7,4 +7,5 @@ package dev.synapsetech.teampages.util
  */
 interface FailableResponse {
     val success: Boolean
+    val message: String?
 }
