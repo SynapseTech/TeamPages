@@ -23,7 +23,6 @@ val jwtVerifier: JWTVerifier = JWT
     .build()
 
 fun Application.configureSecurity() {
-
     authentication {
         jwt {
             val jwtAudience = MainConfig.instance.jwt.audience

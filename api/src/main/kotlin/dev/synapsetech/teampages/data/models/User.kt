@@ -56,6 +56,7 @@ data class User(
         fun getCollection() = Mongo.database.getCollection<User>(COLLECTION_NAME)
         fun findById(id: Long) = getCollection().findOneById(id)
         fun findByEmail(email: String) = getCollection().findOne(User::email eq email)
+        fun findByUsername(username: String) = getCollection().findOne(User::username eq username)
 
         fun genSalt(): String = BCrypt.gensalt(12)
     }
