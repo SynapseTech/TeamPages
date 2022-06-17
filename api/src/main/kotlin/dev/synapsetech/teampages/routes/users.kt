@@ -1,7 +1,7 @@
 package dev.synapsetech.teampages.routes
 
 import dev.synapsetech.teampages.data.models.User
-import dev.synapsetech.teampages.data.models.getUser
+import dev.synapsetech.teampages.data.models.requireUser
 import dev.synapsetech.teampages.plugins.genJwt
 import dev.synapsetech.teampages.util.FailableResponse
 import dev.synapsetech.teampages.util.ResponseError
@@ -25,7 +25,7 @@ data class CreateAccountRequest(
 data class CreateAccountResponseSuccess(
     val user: User.Json,
 ) : FailableResponse {
-    override val success: Boolean = false
+    override val success = false
 }
 
 @Serializable
@@ -38,8 +38,28 @@ data class LoginRequest(
 data class LoginResponseSuccess(
     val token: String,
 ) : FailableResponse {
-    override val success: Boolean = true
+    override val success = true
 }
+
+@Serializable
+data class UpdatePasswordRequest(
+    val oldPassword: String,
+    val newPassword: String,
+)
+
+@Serializable
+data class MeResponse(
+    val user: User.Json,
+) : FailableResponse {
+    override val success = true
+}
+
+@Serializable
+data class UpdatePasswordResponse(
+    val passwordChanged: Boolean,
+    override val success: Boolean,
+    val message: String? = null,
+) : FailableResponse
 
 fun Route.userRoutes() {
     route("/users") {
@@ -88,12 +108,32 @@ fun Route.userRoutes() {
 
         authenticate("auth-jwt") {
             get("/me") {
-                val user = getUser() ?: run {
-                    call.respond(HttpStatusCode.Unauthorized, ResponseError("No user authorized"))
-                    return@get
+                val user = requireUser()
+                call.respond(MeResponse(user.toApiJson(true)))
+            }
+
+            post("/me/updatePassword") {
+                val user = requireUser()
+                val request: UpdatePasswordRequest = call.receive()
+
+                val oldPasswordValid = user.checkPassword(request.oldPassword)
+
+                if (!oldPasswordValid) {
+                    call.respond(HttpStatusCode.BadRequest, UpdatePasswordResponse(
+                        passwordChanged = false,
+                        success = false,
+                        message = "Old password invalid"
+                    ))
+                    return@post
                 }
 
-                call.respond(user.toApiJson(true))
+                user.updatePassword(request.newPassword)
+
+                call.respond(UpdatePasswordResponse(
+                    passwordChanged = true,
+                    success = true,
+                    message = "Password changed"
+                ))
             }
         }
     }

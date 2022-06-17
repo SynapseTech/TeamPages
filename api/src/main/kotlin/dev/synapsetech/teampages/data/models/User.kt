@@ -2,9 +2,12 @@ package dev.synapsetech.teampages.data.models
 
 import dev.synapsetech.teampages.data.Mongo
 import dev.synapsetech.teampages.data.snowflake
+import dev.synapsetech.teampages.util.ResponseError
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
+import io.ktor.server.response.*
 import io.ktor.util.pipeline.*
 import kotlinx.serialization.Serializable
 import org.litote.kmongo.*
@@ -142,7 +145,7 @@ data class User(
 }
 
 /**
- * Get The currently authorized user, or return null if not authorized or unable
+ * Get the currently authorized user, or return null if not authorized or unable
  * to fetch the user.
  *
  * @author Liz Ainslie
@@ -151,4 +154,16 @@ fun PipelineContext<Unit, ApplicationCall>.getUser(): User? {
     val principal = call.principal<JWTPrincipal>()
     val userId = principal!!.payload.getClaim("userId").asLong()
     return User.findById(userId)
+}
+
+/**
+ * Get the currently authorized user, and respond with an error if unauthorized
+ * or unable to fetch the user.
+ *
+ * @author Liz Ainslie
+ */
+suspend fun PipelineContext<Unit, ApplicationCall>.requireUser(): User {
+    val user = getUser()
+    if (user == null) call.respond(HttpStatusCode.Unauthorized, ResponseError("No user authorized"))
+    return user!!
 }
