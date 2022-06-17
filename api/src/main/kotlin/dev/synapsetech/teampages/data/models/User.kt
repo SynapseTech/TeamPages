@@ -2,6 +2,10 @@ package dev.synapsetech.teampages.data.models
 
 import dev.synapsetech.teampages.data.Mongo
 import dev.synapsetech.teampages.data.snowflake
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
+import io.ktor.util.pipeline.*
 import kotlinx.serialization.Serializable
 import org.litote.kmongo.*
 import org.mindrot.jbcrypt.BCrypt
@@ -55,4 +59,10 @@ data class User(
 
         fun genSalt(): String = BCrypt.gensalt(12)
     }
+}
+
+fun PipelineContext<Unit, ApplicationCall>.getUser(): User? {
+    val principal = call.principal<JWTPrincipal>()
+    val userId = principal!!.payload.getClaim("userId").asLong()
+    return User.findById(userId)
 }
