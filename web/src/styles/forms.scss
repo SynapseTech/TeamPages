@@ -1,0 +1,21 @@
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+	transition: background-color 600000s 0s, color 600000s 0s;
+	appearance: none;
+}
+input[data-autocompleted] {
+	background-color: transparent !important;
+	appearance: none;
+}
+
+.formControl {
+	@apply rounded bg-gray-200 flex items-center;
+
+	.icon {
+		@apply text-gray-600 p-2 flex-grow-0;
+	}
+
+	input {
+		@apply appearance-none outline-none placeholder-gray-600 bg-transparent p-2 text-inherit flex-grow;
+	}
+}

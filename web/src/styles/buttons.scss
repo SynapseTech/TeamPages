@@ -1,0 +1,22 @@
+@import './colors.scss';
+
+.button {
+	@apply appearance-none bg-gray-200 rounded p-2 flex items-center transition transition-all;
+
+	&.fullWidth {
+		@apply block w-full text-center justify-center;
+	}
+
+	&:hover:not(.disabled) {
+		@apply bg-gray-300;
+	}
+
+	&.primary {
+		@apply text-white;
+		background-color: $primary-500;
+
+		&:hover:not(.disabled) {
+			background-color: darken($primary-500, 5%);
+		}
+	}
+}

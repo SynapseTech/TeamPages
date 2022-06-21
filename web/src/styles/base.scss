@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+	@apply box-border m-0 relative font-normal;
+}
+
+body {
+	@apply min-h-screen;
+}
