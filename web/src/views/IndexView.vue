@@ -1,7 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-	<RouterView />
+	<main class="indexPage"></main>
 </template>
-
-<style></style>
