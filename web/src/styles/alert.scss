@@ -1,15 +1,15 @@
 .alert {
-	@apply bg-gray-100 flex text-black;
-
-	.icon {
-		@apply p-2 text-lg float-right;
-	}
+	@apply bg-gray-100 flex text-black rounded-lg;
 
 	.alertBody {
-		@apply flex flex-col;
+		@apply p-2;
 
 		.heading {
-			@apply font-semibold text-lg;
+			@apply font-semibold text-lg flex items-center;
+
+			.icon {
+				@apply mr-2 inline;
+			}
 		}
 
 		.content {
@@ -17,11 +17,16 @@
 		}
 
 		.closeButton {
-			@apply float-right text-opacity-60 m-2 p-2 bg-white bg-opacity-0 hover:bg-opacity-50;
+			@apply float-right text-opacity-60 ml-2 mb-2 p-0.5 rounded-lg cursor-pointer w-fit clear-right;
+			z-index: 1;
 		}
 	}
 
 	&.red {
 		@apply bg-red-500 text-white;
+
+		.closeButton {
+			@apply bg-white bg-opacity-0 hover:bg-opacity-30;
+		}
 	}
 }

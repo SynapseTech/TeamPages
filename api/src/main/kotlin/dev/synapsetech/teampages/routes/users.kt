@@ -79,7 +79,7 @@ data class UpdateAccountResponse(
 
 fun Route.userRoutes() {
     route("/users") {
-        post("createAccount") {
+        post("/createAccount") {
             val request: CreateAccountRequest = call.receive()
 
             val emailUser = User.findByEmail(request.email)
@@ -106,7 +106,7 @@ fun Route.userRoutes() {
             call.respond(HttpStatusCode.OK, CreateAccountResponseSuccess(user.toApiJson(true)))
         }
 
-        post("login") {
+        post("/login") {
             val request: LoginRequest = call.receive()
 
             val emailUser = User.findByEmail(request.email)

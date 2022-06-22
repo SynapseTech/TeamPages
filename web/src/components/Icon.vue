@@ -11,11 +11,18 @@
 	interface IconProps {
 		name: keyof typeof icons;
 		svgClass: string;
+		size?: number;
 	}
 
-	const props = defineProps<IconProps>();
-	const { svgClass } = reactive(props);
+	const props = withDefaults(defineProps<IconProps>(), {
+		size: 24,
+	});
+	const { svgClass, size } = reactive(props);
 	const icon = computed<Component>(() => icons[props.name]);
+
+	const dynamicClasses = computed(() => ({
+		[svgClass]: true,
+	}));
 
 	function tapped() {
 		emit('tap');
@@ -25,7 +32,13 @@
 <template>
 	<div>
 		<KeepAlive>
-			<component :is="icon" @click="tapped" :class="svgClass" />
+			<component
+				:is="icon"
+				@click="tapped"
+				class="inline"
+				:class="dynamicClasses"
+				:style="{ width: `${size}px`, height: `${size}px` }"
+			/>
 		</KeepAlive>
 	</div>
 </template>

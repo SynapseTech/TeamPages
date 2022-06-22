@@ -14,15 +14,47 @@
 	const email = ref<string>('');
 	const password = ref<string>('');
 	const showPassword = ref<boolean>(false);
+	const error = ref<string | undefined>();
+	const errorTimeout = ref<ReturnType<typeof setTimeout>>();
 
 	const allowLogIn = computed<boolean>(
 		() => password.value !== '' && email.value !== '',
 	);
 
-	function submitForm() {
+	onMounted(() => {
+		if (authStore.loggedIn) {
+			router.push('/');
+		}
+	});
+
+	function showError(value: string) {
+		clearTimeout(errorTimeout.value);
+		error.value = value;
+		errorTimeout.value = setTimeout(() => {
+			error.value = undefined;
+		}, 5000);
+	}
+
+	function hideError() {
+		clearTimeout(errorTimeout.value);
+		error.value = undefined;
+	}
+
+	async function submitForm() {
 		if (!allowLogIn) return;
 
-		// todo: send login logic.
+		const response = await login(email.value, password.value);
+		if (!response) {
+			showError('Unknown Error, please try again.');
+			return;
+		}
+
+		if (response.success) {
+			await router.push('/');
+		} else {
+			showError(response.message);
+			return;
+		}
 	}
 </script>
 
@@ -33,6 +65,18 @@
 				<h1 class="heading">Log In</h1>
 
 				<form class="loginForm" @submit.prevent="submitForm">
+					<Alert
+						v-if="error"
+						heading="There was an error signing in."
+						icon="danger"
+						close
+						color="red"
+						class="mb-4"
+						@close="hideError"
+					>
+						{{ error }}
+					</Alert>
+
 					<div class="formControl">
 						<Icon name="envelope" class="icon" />
 						<input
