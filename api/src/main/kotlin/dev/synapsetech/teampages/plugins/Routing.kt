@@ -1,5 +1,6 @@
 package dev.synapsetech.teampages.plugins
 
+import dev.synapsetech.teampages.config.MainConfig
 import dev.synapsetech.teampages.routes.userRoutes
 import io.ktor.server.routing.*
 import io.ktor.http.*
@@ -11,6 +12,10 @@ fun Application.configureRouting() {
     routing {
         route("/v1") {
             userRoutes()
+        }
+
+        get("/") {
+            call.respondRedirect(MainConfig.instance.webUrl, true)
         }
     }
 }

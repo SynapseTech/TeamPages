@@ -38,8 +38,8 @@ data class LoginRequest(
 @Serializable
 data class LoginResponseSuccess(
     val token: String,
-    override val message: String? = null,
 ) : FailableResponse {
+    override val message: String? = null
     override val success = true
 }
 
@@ -119,7 +119,7 @@ fun Route.userRoutes() {
             val passwordValid = emailUser.checkPassword(request.password)
 
             if (passwordValid) call.respond(LoginResponseSuccess(genJwt(emailUser._id)))
-            else call.respond(ResponseError("Password incorrect"))
+            else call.respond(HttpStatusCode.Unauthorized, ResponseError("Password incorrect"))
         }
 
         authenticate("auth-jwt") {
