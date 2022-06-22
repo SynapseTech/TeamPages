@@ -17,6 +17,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",
 		"@fortawesome/vue-fontawesome": "^3.0.1",
 		"pinia": "^2.0.14",
+		"pinia-plugin-persistedstate": "^1.6.1",
 		"vue": "^3.2.36",
 		"vue-router": "^4.0.15"
 	},

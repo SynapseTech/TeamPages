@@ -1,7 +1,7 @@
 @import './colors.scss';
 
 .button {
-	@apply appearance-none bg-gray-200 rounded p-2 flex items-center transition transition-all;
+	@apply appearance-none bg-gray-200 rounded-lg p-2 flex items-center transition transition-all;
 
 	&.fullWidth {
 		@apply block w-full text-center justify-center;
@@ -14,6 +14,10 @@
 	&.primary {
 		@apply text-white;
 		background-color: $primary-500;
+
+		&.disabled {
+			background-color: lighten($primary-500, 20%);
+		}
 
 		&:hover:not(.disabled) {
 			background-color: darken($primary-500, 5%);

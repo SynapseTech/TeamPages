@@ -1,0 +1,27 @@
+.alert {
+	@apply bg-gray-100 flex text-black;
+
+	.icon {
+		@apply p-2 text-lg float-right;
+	}
+
+	.alertBody {
+		@apply flex flex-col;
+
+		.heading {
+			@apply font-semibold text-lg;
+		}
+
+		.content {
+			@apply text-opacity-90;
+		}
+
+		.closeButton {
+			@apply float-right text-opacity-60 m-2 p-2 bg-white bg-opacity-0 hover:bg-opacity-50;
+		}
+	}
+
+	&.red {
+		@apply bg-red-500 text-white;
+	}
+}
