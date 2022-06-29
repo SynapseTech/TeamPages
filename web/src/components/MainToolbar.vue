@@ -3,14 +3,13 @@
 	import Avatar from '@/components/Avatar.vue';
 	import { onMounted, ref } from 'vue';
 	import type { User } from '@/lib/data/User';
-	import { getMe } from '@/lib/api/user';
 	import AppIcon from '@/assets/app_icon.svg?component';
 
 	const authStore = useAuthStore();
 	const currentUser = ref<User>();
 
 	onMounted(async () => {
-		currentUser.value = await getMe();
+		currentUser.value = await authStore.getUser();
 	});
 </script>
 
