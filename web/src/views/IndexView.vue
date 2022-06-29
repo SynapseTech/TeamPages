@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import MainToolbar from '@/components/MainToolbar.vue';
+</script>
 
 <template>
-	<main class="indexPage"></main>
+	<main class="indexPage">
+		<MainToolbar />
+	</main>
 </template>
+
+<style lang="scss"></style>

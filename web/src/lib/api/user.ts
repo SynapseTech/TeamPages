@@ -1,10 +1,16 @@
-import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import type { User } from '@/lib/data/User';
 
 export interface LoginResponse {
 	success: true;
 	message: null;
 	token: string;
+}
+
+export interface MeResponse {
+	success: true;
+	message: null;
+	user: User;
 }
 
 export interface ErrorResponse {
@@ -18,7 +24,6 @@ export async function login(
 ): Promise<LoginResponse | ErrorResponse> {
 	const authStore = useAuthStore();
 
-	// @ts-ignore
 	try {
 		const res = await fetch(
 			`${import.meta.env.VITE_API_URL}/v1/users/login`,
@@ -41,4 +46,19 @@ export async function login(
 	} catch (resData: any) {
 		return resData as ErrorResponse;
 	}
+}
+
+export async function getMe(): Promise<User> {
+	const authStore = useAuthStore();
+
+	const res = await fetch(`${import.meta.env.VITE_API_URL}/v1/users/me`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${authStore.token}`,
+		},
+	});
+
+	if (!res.ok) throw (await res.json()) as ErrorResponse;
+	const body = (await res.json()) as MeResponse;
+	return body.user;
 }

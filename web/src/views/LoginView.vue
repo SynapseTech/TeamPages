@@ -4,7 +4,7 @@
 	import { useAuthStore } from '@/stores/auth';
 	import { useRouter } from 'vue-router';
 	import Icon from '@/components/Icon.vue';
-	import { login } from '@/lib/api/auth';
+	import { login } from '@/lib/api/user';
 	import Alert from '@/components/Alert.vue';
 
 	const authStore = useAuthStore();

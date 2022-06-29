@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1056.08,0)">
+        <g id="AppIcon" transform="matrix(1,0,0,1,1056.08,0)">
+            <rect x="0" y="0" width="1024" height="1024" style="fill:white;fill-opacity:0;"/>
+            <clipPath id="_clip1">
+                <rect x="0" y="0" width="1024" height="1024"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(1.00129,0,0,1.00379,0.658098,-2.63897)">
+                    <path d="M1022.03,257.663C1022.03,116.906 907.466,2.629 766.357,2.629L255.014,2.629C113.905,2.629 -0.657,116.906 -0.657,257.663L-0.657,767.731C-0.657,908.488 113.905,1022.76 255.014,1022.76L766.357,1022.76C907.466,1022.76 1022.03,908.488 1022.03,767.731L1022.03,257.663Z" style="fill:rgb(255,158,0);"/>
+                </g>
+                <g id="feather-pointed-solid.svg" transform="matrix(1,0,0,1,512,512)">
+                    <g transform="matrix(1,0,0,1,-256,-256)">
+                        <clipPath id="_clip2">
+                            <rect x="0" y="0" width="512" height="512"/>
+                        </clipPath>
+                        <g clip-path="url(#_clip2)">
+                            <path d="M467.1,241.1L351.1,288L445.44,288C437.729,302.85 429.15,317.28 419.57,331.01L287.07,384L372.72,384C313.38,436.71 228.62,464.34 108.22,436.82L40.09,504.95C30.71,514.33 15.53,514.324 6.15,504.95C-3.225,495.575 -3.225,480.39 6.15,471.01L259.55,217.61C264.396,211.335 264.193,202.42 258.437,196.66C252.187,190.41 242.057,190.41 235.817,196.66L67.217,365.26C24.56,58 366.9,8.118 478.9,0.085C497.77,-1.269 513.31,14.275 511.95,33.135C508.7,78.53 498.5,161.8 467.1,241.1Z" style="fill:white;fill-rule:nonzero;"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
