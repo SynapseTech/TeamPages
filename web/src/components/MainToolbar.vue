@@ -8,6 +8,8 @@
 	const authStore = useAuthStore();
 	const currentUser = ref<User>();
 
+	const showUserMenu = ref<boolean>(false);
+
 	onMounted(async () => {
 		currentUser.value = await authStore.getUser();
 	});
@@ -18,6 +20,7 @@
 		<div class="section">
 			<div class="brand">
 				<AppIcon />
+				TeamPages
 			</div>
 
 			<router-link to="/" class="link" active-class="active">
@@ -35,8 +38,14 @@
 				<Avatar
 					src="https://cdn.discordapp.com/avatars/543542278967394322/99f5040863c94823e743134348722b1c.png"
 					class="userAvatar"
+					ref="avatarComponent"
+					@click="showUserMenu = !showUserMenu"
 				/>
-				{{ currentUser?.username }}
+				<div v-show="showUserMenu" class="userMenu">
+					<div class="item">
+						{{ currentUser?.username }}
+					</div>
+				</div>
 			</div>
 		</div>
 	</nav>
@@ -44,6 +53,20 @@
 
 <style scoped lang="scss">
 	@import '../styles/colors';
+
+	.userMenu {
+		@apply bg-white rounded border-[1px] border-gray-200 shadow flex flex-col absolute bottom-[-8px] right-3 items-center w-48;
+		transform: translateY(100%);
+		z-index: 1000;
+
+		.item {
+			@apply p-2;
+
+			&:not(:last-child) {
+				@apply border-b-[1px] border-gray-100;
+			}
+		}
+	}
 
 	.appToolbar {
 		@apply flex items-center border-b-[1px] border-gray-200;
@@ -69,10 +92,11 @@
 			}
 
 			.brand {
-				@apply p-2;
+				@apply p-2 w-72 flex items-center font-bold tracking-wide;
+				color: $primary-500;
 
 				svg {
-					@apply aspect-square h-8 w-8;
+					@apply aspect-square h-8 w-8 mr-2;
 				}
 			}
 
