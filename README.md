@@ -1,3 +1,5 @@
+<img src="./assets/app_icon_4096.png" align="right" style='margin-right: 16px;' width="128px" alt="Logo"/>
+
 # TeamPages
 TeamPages is a beautiful, self-hosted solution to internal team documentation
 brought to you by Synapse Technologies.
