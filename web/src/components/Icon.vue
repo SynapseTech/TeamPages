@@ -29,18 +29,15 @@
 	}
 </script>
 
-<template>
-	<div>
-		<KeepAlive>
-			<component
-				:is="icon"
-				@click="tapped"
-				class="inline"
-				:class="dynamicClasses"
-				:style="{ width: `${size}px`, height: `${size}px` }"
-			/>
-		</KeepAlive>
-	</div>
+<template lang="pug">
+div
+	KeepAlive
+		component.inline(
+			:is="icon"
+			@click="tapped"
+			:class="dynamicClasses"
+			:style="{ width: `${size}px`, height: `${size}px` }"
+		)
 </template>
 
 <style scoped lang="scss"></style>

@@ -2,20 +2,15 @@
 	import MainToolbar from '@/components/MainToolbar.vue';
 </script>
 
-<template>
-	<div class="indexPage">
-		<MainToolbar class="flex-grow-0" />
+<template lang="pug">
+.indexPage
+	MainToolbar.flex-grow-0
 
-		<main class="content">
-			<aside class="sideMenu">
-				<!-- todo: search box -->
-
-				<div class="sideList">
-					<div class="heading">Recent Books</div>
-				</div>
-			</aside>
-		</main>
-	</div>
+	main.content
+		aside.sideMenu
+			// todo: search box
+			.sideList
+				.heading Recent Books
 </template>
 
 <style lang="scss">

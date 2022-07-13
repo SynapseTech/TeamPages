@@ -58,89 +58,73 @@
 	}
 </script>
 
-<template>
-	<div class="loginPage">
-		<div class="column">
-			<main class="content">
-				<h1 class="heading">Log In</h1>
+<template lang="pug">
+.loginPage
+	.column
+		main.content
+			h1.heading Log In
 
-				<form class="loginForm" @submit.prevent="submitForm">
-					<Alert
-						v-if="error"
-						heading="There was an error signing in."
-						icon="danger"
-						close
-						color="red"
-						class="mb-4"
-						@close="hideError"
-					>
-						{{ error }}
-					</Alert>
+			form.loginForm(@submit.prevent="submitForm")
+				Alert.mb-4(
+					v-if="error"
+					heading="There was an error signing in."
+					icon="danger"
+					close
+					color="red"
+					@close="hideError"
+				) {{ error }}
 
-					<div class="formControl">
-						<Icon name="envelope" class="icon" />
-						<input
-							name="email"
-							id="emailInput"
-							:size="1"
-							v-model="email"
-							placeholder="Email"
-							type="email"
-						/>
-					</div>
+				.formControl
+					Icon.icon(name="envelope")
+					input(
+						name="email"
+						id="emailInput"
+						:size="1"
+						v-model="email"
+						placeholder="Email"
+						type="email"
+					)
 
-					<div class="formControl mt-4">
-						<Icon name="lock" class="icon" />
-						<input
-							name="password"
-							id="passwordInput"
-							:size="1"
-							v-model="password"
-							placeholder="Password"
-							:type="showPassword ? 'text' : 'password'"
-						/>
-						<Icon
-							:name="showPassword ? 'eyeSlash' : 'eye'"
-							class="icon"
-							svg-class="cursor-pointer"
-							@tap="showPassword = !showPassword"
-						/>
-					</div>
+				.formControl.mt-4
+					Icon.icon(name="lock")
+					input(
+						name="password"
+						id="passwordInput"
+						:size="1"
+						v-model="password"
+						placeholder="Password"
+						:type="showPassword ? 'text' : 'password'"
+					)
+					Icon.icon(
+						:name="showPassword ? 'eyeSlash' : 'eye'"
+						svg-class="cursor-pointer"
+						@tap="showPassword = !showPassword"
+					)
 
-					<div class="flex items-center mt-4 w-full">
-						<div class="flex-grow" />
+				.flex.items-center.mt-4.w-full
+					.flex-grow
 
-						<button
-							type="submit"
-							:disabled="!allowLogIn"
-							:aria-disabled="!allowLogIn"
-							class="button primary flex-grow-0"
-							:class="{ disabled: !allowLogIn }"
-						>
-							Log In
-						</button>
-					</div>
-				</form>
+					button.button.primary.flex-grow-0(
+						type="submit"
+						:disabled="!allowLogIn"
+						:aria-disabled="!allowLogIn"
+						:class="{ disabled: !allowLogIn }"
+					) Log In
 
-				<div class="flex flex-col items-center w-full mt-4">
-					<a href="#" class="link">Forgot your password?</a>
+			.flex.flex-col.items-center.w-full.mt-4
+				a.link(href="#") Forgot your password?
 
-					<!-- todo: allow disabling signups -->
-					<a href="#" class="link">Need an account?</a>
-				</div>
-			</main>
+				// todo: allow disabling signups
+				a.link(href="#") Need an account?
 
-			<footer class="footer">
-				<CopyrightNotice />
-			</footer>
-		</div>
-	</div>
+		footer.footer
+			CopyrightNotice
 </template>
 
 <style scoped lang="scss">
-	@import '../styles/buttons.scss';
-	@import '../styles/forms.scss';
-	@import '../styles/text.scss';
+	@import '../styles/buttons';
+	@import '../styles/forms';
+	@import '../styles/text';
 
 	.loginPage {
 		@apply flex flex-col items-center w-screen h-screen;

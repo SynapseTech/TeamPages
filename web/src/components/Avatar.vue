@@ -13,10 +13,9 @@
 	}));
 </script>
 
-<template>
-	<div class="avatar" :class="avatarClasses">
-		<img alt="" :src="props.src" />
-	</div>
+<template lang="pug">
+.avatar(:class="avatarClasses")
+	img(alt="" :src="props.src")
 </template>
 
 <style scoped lang="scss">

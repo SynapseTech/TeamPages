@@ -33,28 +33,21 @@
 	}
 </script>
 
-<template>
-	<div class="alert" :class="dynamicClasses">
-		<div class="alertBody">
-			<Icon
-				class="closeButton"
-				v-if="close"
-				name="closeSquare"
-				@click="closeButtonClicked"
-			/>
-			<div class="heading" v-if="icon || heading">
-				<Icon class="icon" v-if="icon" :name="icon" />
-				<template v-if="heading">
-					{{ heading }}
-				</template>
-			</div>
-			<div class="content">
-				<slot />
-			</div>
-		</div>
-	</div>
+<template lang="pug">
+.alert(:class="dynamicClasses")
+	.alertBody
+		Icon.closeButton(
+			v-if="close"
+			name="closeSquare"
+			@click="closeButtonClicked"
+		)
+		.heading(v-if="icon || heading")
+			Icon.icon(v-if="icon" :name="icon")
+			template(v-if="heading") {{ heading }}
+		.content
+			slot
 </template>
 
 <style scoped lang="scss">
-	@import '../styles/alert.scss';
+	@import '../styles/alert';
 </style>

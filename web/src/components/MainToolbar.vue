@@ -15,40 +15,31 @@
 	});
 </script>
 
-<template>
-	<nav class="appToolbar">
-		<div class="section">
-			<div class="brand">
-				<AppIcon />
-				TeamPages
-			</div>
+<template lang="pug">
+nav.appToolbar
+	.section
+		.brand
+			AppIcon
+			| TeamPages
 
-			<router-link to="/" class="link" active-class="active">
-				Home
-				<div class="activeIndicator" />
-			</router-link>
-			<router-link to="/books" class="link" active-class="active">
-				Books
-				<div class="activeIndicator" />
-			</router-link>
-		</div>
-		<div class="spacer" />
-		<div class="section">
-			<div class="currentUser" v-if="authStore.loggedIn">
-				<Avatar
-					src="https://cdn.discordapp.com/avatars/543542278967394322/99f5040863c94823e743134348722b1c.png"
-					class="userAvatar"
-					ref="avatarComponent"
-					@click="showUserMenu = !showUserMenu"
-				/>
-				<div v-show="showUserMenu" class="userMenu">
-					<div class="item">
-						{{ currentUser?.username }}
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
+		router-link.link(to="/" active-class="active")
+			| Home
+			.activeIndicator
+		router-link.link(to="/books" active-class="active")
+			| Books
+			.activeIndicator
+	.spacer
+	.section
+		.currentUser(v-if="authStore.loggedIn")
+			Avatar(
+				src="https://cdn.discordapp.com/avatars/543542278967394322/99f5040863c94823e743134348722b1c.png"
+				class="userAvatar"
+				ref="avatarComponent"
+				@click="showUserMenu = !showUserMenu"
+			)
+
+			.userMenu(v-show="showUserMenu")
+				.item {{ currentUser?.username }}
 </template>
 
 <style scoped lang="scss">

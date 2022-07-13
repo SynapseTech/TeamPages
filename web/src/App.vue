@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
-<template>
-	<RouterView />
+<template lang="pug">
+RouterView
 </template>
 
 <style></style>

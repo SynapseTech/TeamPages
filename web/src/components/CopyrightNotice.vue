@@ -1,14 +1,11 @@
 <script setup type="ts"></script>
 
-<template>
-	<span>
-		&copy; {{ new Date().getFullYear() }}
-		<a href="https://synapsetech.dev" class="link"
-			>Synapse Technologies, LLC</a
-		>
-	</span>
+<template lang="pug">
+span
+	| &copy; {{ new Date().getFullYear() }}
+	a.link(href="https://synapsetech.dev") Synapse Technologies, LLC
 </template>
 
 <style scoped lang="scss">
-	@import '../styles/text.scss';
+	@import '../styles/text';
 </style>
