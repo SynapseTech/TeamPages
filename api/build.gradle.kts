@@ -33,7 +33,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
 
     implementation("ch.qos.logback:logback-classic:$logback_version") // Logging
-    implementation("org.litote.kmongo:kmongo-serialization:4.6.1") // MongoDB
+    implementation("org.litote.kmongo:kmongo-serialization:4.7.0") // MongoDB
     implementation("xyz.downgoon:snowflake:1.0.0") // ID generation
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3") // JSON
     implementation("org.mindrot:jbcrypt:0.4") // BCrypt Password Hashing
