@@ -118,11 +118,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@popperjs/core@2":
-  version "2.11.5"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
-  integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
-
 "@rushstack/eslint-patch@^1.1.4":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz#0c8b74c50f29ee44f423f7416829c0bf8bb5eb27"
@@ -712,11 +707,6 @@ constantinople@^4.0.1:
   dependencies:
     "@babel/parser" "^7.6.0"
     "@babel/types" "^7.6.1"
-
-core-js@^3.9.1:
-  version "3.23.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.23.3.tgz#3b977612b15da6da0c9cc4aec487e8d24f371112"
-  integrity sha512-oAKwkj9xcWNBAvGbT//WiCdOMpb9XQG92/Fe3ABFM/R16BsHgePG00mFOgKf7IsCtfj8tA1kHtf/VwErhriz5Q==
 
 cross-spawn@^6.0.5:
   version "6.0.5"
@@ -2895,14 +2885,6 @@ vue-tsc@^0.40.1:
   dependencies:
     "@volar/vue-language-core" "0.40.1"
     "@volar/vue-typescript" "0.40.1"
-
-vue-use-popperjs@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/vue-use-popperjs/-/vue-use-popperjs-2.3.1.tgz#63b4c9d7994778906f9ffb740801df52749bf8f7"
-  integrity sha512-EdabiNZmKGLqm4hnZdZf/naQ0a/8v3k32DZbrbgwn8yye9HJf90uJel/HAICD+/7FfRH8A02JRsEeIFmG7sOiw==
-  dependencies:
-    "@popperjs/core" "2"
-    core-js "^3.9.1"
 
 vue@^3.2.36:
   version "3.2.37"
